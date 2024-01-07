@@ -2,19 +2,21 @@ import java.util.*;
 
 class Solution {
     public int majorityElement(int[] nums) {
-        Map<Integer,Integer> hMap = new HashMap<>();
+        int count = 0;
+        int element = 0;
         for(int i=0;i<nums.length;i++){
-            if(hMap.containsKey(nums[i])){
-                int temp = hMap.get(nums[i]);
-                hMap.put(nums[i],temp+1);
+            if(count == 0){
+                element = nums[i];
+                count++;
+            }
+            else if(nums[i] == element){
+                count++;
             }
             else{
-                hMap.put(nums[i],1);
-            }
-            if(hMap.get(nums[i]) > nums.length/2){
-                return nums[i];
+                count--;
             }
         }
-        return 0;
+        
+        return element;
     }
 }
