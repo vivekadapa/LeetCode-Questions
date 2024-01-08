@@ -2,21 +2,20 @@ import java.util.*;
 
 class Solution {
     public int[] rearrangeArray(int[] nums) {
-        int n = nums.length;
-        ArrayList<Integer> numsp = new ArrayList<>();
-        ArrayList<Integer> numsn = new ArrayList<>();
-        for(int i=0;i<n;i++){
+        int pos = 0;
+        int neg = 1;
+        int arr[] = new int[nums.length];
+        for(int i=0;i<nums.length;i++){
             if(nums[i] > 0){
-                numsp.add(nums[i]);
+                arr[pos] = nums[i];
+                pos = pos + 2;
             }
             else{
-                numsn.add(nums[i]);
+                arr[neg] = nums[i];
+                neg = neg + 2;
             }
         }
-        for(int i=0;i<n/2;i++){
-            nums[2*i] = numsp.get(i);
-            nums[(2*i)+ 1] = numsn.get(i);
-        }
-        return nums;
+        
+        return arr;
     }
 }
