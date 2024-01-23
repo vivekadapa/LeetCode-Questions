@@ -1,19 +1,20 @@
 class Solution {
     public boolean isAnagram(String s, String t) {
-        char[] sArr = s.toCharArray();
-        char[] tArr = t.toCharArray();
-        Arrays.sort(sArr);
-        Arrays.sort(tArr);
-        
-        String str1 = Arrays.toString(sArr);
-        String str2 = Arrays.toString(tArr);
-        
-        if(str1.equals(str2)){
-            return true;
-        }
-        
-        return false;
-        
-        
+            int sArr[] = new int[128];
+            int tArr[] = new int[128];
+            if(s.length() != t.length()){
+                return false;
+            }
+            for(int i=0;i<s.length();i++){
+                sArr[s.charAt(i)]++;
+                tArr[t.charAt(i)]++;
+            }
+            
+            for(int i=0;i<s.length();i++){
+                if(sArr[s.charAt(i)] != tArr[s.charAt(i)]){
+                    return false;
+                }
+            }
+        return true;
     }
 }
