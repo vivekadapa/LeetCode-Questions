@@ -1,17 +1,12 @@
 class Solution {
     public int firstUniqChar(String s){
-        boolean flag = false;
+        HashMap<Character,Integer> freq = new HashMap<>();
         for(int i=0;i<s.length();i++){
-            for(int j=0;j<s.length();j++){
-                if(i!=j && s.charAt(i) == s.charAt(j)){
-                    flag = true;
-                    break;
-                }
-                else{
-                    flag = false;
-                }
-            }
-            if(flag == false){
+            char c = s.charAt(i);
+            freq.put(c,freq.getOrDefault(c,0) + 1);
+        }
+        for(int i=0;i<s.length();i++){
+            if(freq.get(s.charAt(i)) == 1){
                 return i;
             }
         }
