@@ -1,16 +1,16 @@
-import java.util.Arrays;
-
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        int arr[] = new int[2];
-        Map<Integer,Integer> hashMap = new HashMap<>();
+        HashMap<Integer,Integer> map = new HashMap<>();
         for(int i=0;i<nums.length;i++){
-            if(hashMap.containsKey(target-nums[i])){
-                arr[0] = i;
-                arr[1] = hashMap.get(target-nums[i]);
+            map.put(nums[i],i);
+        }
+        for(int i=0;i<nums.length;i++){
+            int val = target - nums[i];
+            if(map.containsKey(val) && map.get(val) != i){
+                int arr[] = {i,map.get(val)};
+                return arr;
             }
-            hashMap.put(nums[i],i);
-        }        
-        return arr;
+        }
+        return null;
     }
 }
