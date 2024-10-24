@@ -13,21 +13,21 @@ class Solution {
         return this.original;
     }
 
-    public List<Integer> getArrayCopy(int[] arr){
-        List<Integer> li = new ArrayList<Integer>();
-        for(int i:arr){
-            li.add(i);
-        }
-        return li;
+    int getRange(int max,int min){
+        return random.nextInt(max-min) + min;
     }
 
+    void swap(int i,int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+
     public int[] shuffle() {
-        List<Integer> list = getArrayCopy(arr);
         int n = arr.length;
         for(int i=0;i<n;i++){
-            int j = random.nextInt(list.size());
-            arr[i] = list.get(j);
-            list.remove(j);
+            swap(i,getRange(n,i));
         }
         return arr;
     }
